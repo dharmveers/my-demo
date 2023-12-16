@@ -25,7 +25,10 @@ const TodoManager = ({id ,setTodoId}) => {
         setUser({ ...user, [e.target.name]: e.target.value });
         // console.log(user);
     }
-
+    const handleReset=()=>{
+        setUser({ ...user, title: "", description: "",status: ""});
+        setTodoId("");
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         //console.log(user);
@@ -40,7 +43,6 @@ const TodoManager = ({id ,setTodoId}) => {
                                   setTodoId("");
                                   
         }
-
     }
     return (
         <div>
@@ -76,8 +78,9 @@ const TodoManager = ({id ,setTodoId}) => {
                         <option value="Done">Done</option>
                     </select>
                     {
-                        id?<button type="submit">Update</button>:<button type="submit">Add Task</button>
+                        id?<button type="submit" className="btn btn-warning ms-1" >Update</button>:<button type="submit">Add Task</button>
                     }
+                    <button type="reset" onClick={handleReset} className="btn btn-primary ms-1">Reset</button>
                 </form>
             </div>
         </div>
