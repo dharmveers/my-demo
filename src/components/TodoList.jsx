@@ -37,9 +37,9 @@ const TodoList = ({getTodoId}) => {
                                 <td>{obj.title}</td>
                                 <td>{obj.description}</td>
                                 <td>{obj.status}</td>
-                                <td>
-                                <button className='btn btn-danger' onClick={()=>deleteTodo(obj.id)}>Delete</button>
-                                <button className="btn btn-warning ms-1" onClick={()=>getTodoId(obj.id)}>Update</button>
+                                <td style={{whiteSpace:"nowrap"}}>
+                                <button className='btn btn-danger btn-small' onClick={()=>deleteTodo(obj.id)}>Delete</button>
+                                <button className="btn btn-warning btn-small ms-1" onClick={()=>getTodoId(obj.id)} data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
                                 <ToastContainer/>
                                 </td>
                             </tr>

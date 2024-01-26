@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import TodoManager from './components/TodoManager';
+import { Model } from './components/Modal';
 
 
 function App() {
@@ -14,8 +15,20 @@ function App() {
   }
   return (
     <div className="App">
-        <TodoManager id={todoId} setTodoId={setTodoId}/>
-        <TodoList getTodoId={getTodoHandler}/>
+        <Model  id={todoId} setTodoId={setTodoId}/>
+        <div className='container-fluid pt-5'>
+            <div className='row'>
+                <div className='col-md-4 offset-1'>
+
+                <TodoManager/>
+                </div>
+                <div className='col-md-6'>
+                <TodoList getTodoId={getTodoHandler}/>
+                </div>
+
+            </div>
+
+        </div>
     </div>
   );
 }

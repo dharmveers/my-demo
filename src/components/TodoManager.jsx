@@ -32,22 +32,13 @@ const TodoManager = ({id ,setTodoId}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         //console.log(user);
-        if(id==="" || id===undefined){
             await TodoDataServices.addTodo(user)
                                   .then(setUser({ ...user, title: "", description: "",status: ""}));
                                   toast.success("Records saved successFully",{position:"top-center"});
-        }else{
-            await TodoDataServices.updateTodo(id,user)
-                                  .then(setUser({ ...user, title: "", description: "",status: ""}));
-                                  toast.success("Records Updated successFully",{position:"top-center"});
-                                  setTodoId("");
-                                  
-        }
     }
     return (
         <div>
-            <div className="container">
-                <div className="header"><h2>Task Management</h2></div>
+                <div><h1>Task Management</h1></div>
                 <form onSubmit={handleSubmit} className='form-group' method='post'>
 
                     <label htmlFor="title">Title:</label>
@@ -63,7 +54,7 @@ const TodoManager = ({id ,setTodoId}) => {
                     <label htmlFor="description">Description:</label>
                     <textarea
                         id="description"
-                        rows={6}
+                        rows={3}
                         name='description'
                         value={user.description}
                         onChange={getUserData}
@@ -77,12 +68,11 @@ const TodoManager = ({id ,setTodoId}) => {
                         <option value="In Progress">In Progress</option>
                         <option value="Done">Done</option>
                     </select>
-                    {
-                        id?<button type="submit" className="btn btn-warning ms-1" >Update</button>:<button type="submit">Add Task</button>
-                    }
-                    <button type="reset" onClick={handleReset} className="btn btn-primary ms-1">Reset</button>
+                    <div className="form-group d-block">
+                    <button type="submit" className='btn btn-success m-1'>Add Task</button>
+                    <button type="reset" onClick={handleReset} className="btn btn-primary m-1">Reset</button>
+                    </div>
                 </form>
-            </div>
         </div>
     )
 }
