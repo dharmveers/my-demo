@@ -1,19 +1,18 @@
 pipeline {
     agent any
-    tools {nodejs "NODEJS"}
+    tools { nodejs "NODEJS" }
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         stage('Deliver') {
             steps {
-                sh 'chmod -R +rwx ./jenkins/scripts/deliver.sh'
-                sh 'chmod -R +rwx ./jenkins/scripts/kill.sh'
-                sh './jenkins/scripts/deliver.sh'
+                // No chmod equivalent needed on Windows, unless using Git Bash or similar
+                bat 'jenkins\\scripts\\deliver.bat'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                bat 'jenkins\\scripts\\kill.bat'
             }
         }
     }
